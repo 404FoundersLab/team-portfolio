@@ -45,8 +45,8 @@ const roadmap = [
 ];
 
 const team = [
-  { name: "Pramodkumar S V", role: "DevOps Engineer · Co-founder", bio: "A former network administrator turned DevOps engineer. Owns infrastructure, CI/CD, security and reliability for Assetly.", links: { LinkedIn: "https://www.linkedin.com/in/pramodkumar-s-vagannanavar", Email: "mailto:svpramodkumar1@gmail.com" } },
-  { name: "Pavankumar", role: "Frontend Developer · Co-founder", bio: "Builds the Assetly user interface with a focus on speed, usability and clean design.", links: { LinkedIn: "https://www.linkedin.com/in/pavan-kumar-vel", Email: "mailto:vpavan.j7@gmail.com" } },
+  { name: "Pramodkumar S V", role: "DevOps Engineer · Co-founder", bio: "A former network administrator turned DevOps engineer. Owns infrastructure, CI/CD, security and reliability for Assetly.", links: { LinkedIn: "https://www.linkedin.com/in/pramodkumar-s-vagannanavar" } },
+  { name: "Pavankumar", role: "Frontend Developer · Co-founder", bio: "Builds the Assetly user interface with a focus on speed, usability and clean design.", links: { LinkedIn: "https://www.linkedin.com/in/pavan-kumar-vel" } },
 ];
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -74,16 +74,12 @@ $("team-grid").innerHTML = team.map((m) => `
     <h3>${esc(m.name)}</h3>
     <p class="role">${esc(m.role)}</p>
     <p>${esc(m.bio)}</p>
-    <div class="links">${Object.entries(m.links).map(([k, v]) => `<a href="${esc(v)}" rel="noopener noreferrer">${esc(k)}</a>`).join("")}</div>
+    <div class="links">${Object.entries(m.links).map(([k, v]) => `<a href="${esc(v)}">${esc(k)}</a>`).join("")}</div>
   </article>`).join("");
 
 const nav = $("nav");
 document.querySelector(".menu-toggle").addEventListener("click", () => nav.classList.toggle("open"));
 nav.addEventListener("click", () => nav.classList.remove("open"));
-
-// Messages are emailed via FormSubmit (https://formsubmit.co) to the primary address, with the second as CC.
-const CONTACT_TO = "svpramodkumar1@gmail.com";
-const CONTACT_CC = "vpavan.j7@gmail.com";
 
 const EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
 const COMMON_DOMAINS = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "icloud.com", "live.com", "protonmail.com"];
@@ -140,31 +136,19 @@ $("contact-form").addEventListener("submit", async (e) => {
   }
   status.textContent = "Sending...";
   try {
-    const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_TO}`, {
+    const res = await fetch("/api/contact", {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        ...data,
-        _subject: `404FoundersLab website enquiry from ${data.name}`,
-        _replyto: data.email,
-        _cc: CONTACT_CC,
-        _template: "table",
-        _captcha: "false",
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
-    const out = await res.json();
-    if (!res.ok || out.success === "false") throw new Error(out.message || "Failed");
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(out.error || "Failed");
     status.style.color = "#16a34a";
     status.textContent = "Thanks! We'll get back to you soon.";
     form.reset();
   } catch (err) {
-    // Fallback: open the visitor's email app with the message pre-filled.
-    const subject = encodeURIComponent(`404FoundersLab website enquiry from ${data.name}`);
-    const body = encodeURIComponent(`${data.message}\n\nName: ${data.name}\nEmail: ${data.email}`);
-    const href = `mailto:${CONTACT_TO}?cc=${CONTACT_CC}&subject=${subject}&body=${body}`;
     status.style.color = "#dc2626";
-    status.innerHTML = `Could not send automatically. <a href="${href}" class="status-link">Click here to send via your email app</a>.`;
-    window.location.href = href;
+    status.textContent = err.message && err.message !== "Failed" ? err.message : "Could not send your message. Please try again in a moment.";
   } finally {
     btn.disabled = false;
   }
