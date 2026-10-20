@@ -85,14 +85,59 @@ nav.addEventListener("click", () => nav.classList.remove("open"));
 const CONTACT_TO = "svpramodkumar1@gmail.com";
 const CONTACT_CC = "vpavan.j7@gmail.com";
 
+const EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+const COMMON_DOMAINS = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "icloud.com", "live.com", "protonmail.com"];
+
+function distance(a, b) {
+  const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++)
+    for (let j = 1; j <= b.length; j++)
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return d[a.length][b.length];
+}
+
+// Returns an error message, or "" if the email looks valid and its domain can receive mail.
+async function checkEmail(email) {
+  if (!EMAIL_RE.test(email)) return "Please enter a valid email address.";
+  const domain = email.split("@")[1].toLowerCase();
+  const typo = COMMON_DOMAINS.find((d) => d !== domain && distance(d, domain) <= 2);
+  if (typo) return `Did you mean ${email.split("@")[0]}@${typo}?`;
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 5000);
+    const res = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=MX`, { signal: ctrl.signal });
+    clearTimeout(timer);
+    const dns = await res.json();
+    if (dns.Status === 3 || (dns.Status === 0 && !dns.Answer)) {
+      // No MX record: fall back to an A record (valid per mail standards).
+      const a = await (await fetch(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=A`)).json();
+      if (!a.Answer) return `The domain "${domain}" cannot receive email. Please check your address.`;
+    }
+  } catch (_) {
+    // DNS lookup unavailable: accept the format-valid address rather than blocking the visitor.
+  }
+  return "";
+}
+
 $("contact-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
   const status = $("form-status");
   const btn = form.querySelector("button");
   const data = Object.fromEntries(new FormData(form));
+  data.email = data.email.trim();
   btn.disabled = true;
   status.style.color = "";
+  status.textContent = "Verifying email...";
+  const emailError = await checkEmail(data.email);
+  if (emailError) {
+    status.style.color = "#dc2626";
+    status.textContent = emailError;
+    form.email.focus();
+    btn.disabled = false;
+    return;
+  }
   status.textContent = "Sending...";
   try {
     const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_TO}`, {
