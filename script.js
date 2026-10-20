@@ -113,8 +113,13 @@ $("contact-form").addEventListener("submit", async (e) => {
     status.textContent = "Thanks! We'll get back to you soon.";
     form.reset();
   } catch (err) {
+    // Fallback: open the visitor's email app with the message pre-filled.
+    const subject = encodeURIComponent(`404FoundersLab website enquiry from ${data.name}`);
+    const body = encodeURIComponent(`${data.message}\n\nName: ${data.name}\nEmail: ${data.email}`);
+    const href = `mailto:${CONTACT_TO}?cc=${CONTACT_CC}&subject=${subject}&body=${body}`;
     status.style.color = "#dc2626";
-    status.textContent = "Could not send. Please email us directly at " + CONTACT_TO;
+    status.innerHTML = `Could not send automatically. <a href="${href}" style="text-decoration:underline">Click here to send via your email app</a>.`;
+    window.location.href = href;
   } finally {
     btn.disabled = false;
   }
