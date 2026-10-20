@@ -58,6 +58,11 @@ $("modules-grid").innerHTML = modules.map(iconCard).join("");
 $("feature-grid").innerHTML = features.map(iconCard).join("");
 $("security-grid").innerHTML = security.map(iconCard).join("");
 
+$("school-modules").innerHTML = schoolModules.map(iconCard).join("");
+$("school-highlights").innerHTML = schoolHighlights.map(iconCard).join("");
+$("school-roles").innerHTML = schoolRoles.map((t) => `<span class="tag">${esc(t)}</span>`).join("");
+$("school-tech").innerHTML = schoolTech.map((t) => `<span class="tag">${esc(t)}</span>`).join("");
+
 $("steps").innerHTML = steps.map((s) => `<li><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></li>`).join("");
 
 $("tech-list").innerHTML = tech.map((t) => `<span class="tag">${esc(t)}</span>`).join("");
