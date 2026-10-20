@@ -36,16 +36,6 @@ const security = [
 
 const tech = ["React", "TypeScript", "Material UI", "Redux Toolkit", "NestJS", "PostgreSQL 16", "Redis", "RabbitMQ", "Docker", "Kubernetes", "Azure", "GitHub Actions", "Prometheus", "Grafana", "Terraform"];
 
-const roadmap = [
-  { phase: "Phase 1", title: "Asset Management MVP", text: "Assets, employees, vendors, warranty, depreciation, QR codes, audit log, dashboard.", status: "Delivered" },
-  { phase: "Phase 2", title: "Monitoring Agent", text: "Heartbeat, metrics and software inventory from endpoints.", status: "Planned" },
-  { phase: "Phase 3", title: "Remote Management", text: "Script execution and software deployment.", status: "Planned" },
-  { phase: "Phase 4", title: "Network Discovery", text: "SNMP, Active Directory discovery and topology mapping.", status: "Planned" },
-  { phase: "Phase 5", title: "Ticketing", text: "ITIL-style ticketing with SLAs.", status: "Planned" },
-  { phase: "Phase 6", title: "Remote Desktop", text: "Browser-based remote sessions.", status: "Planned" },
-  { phase: "Phase 7", title: "AI IT Assistant", text: "AI-powered help for IT operations.", status: "Planned" },
-];
-
 const schoolModules = [
   { icon: "🎓", title: "Admissions & Students", text: "Handle applications and admission numbers, student records, enrolment and class sections." },
   { icon: "🗓️", title: "Timetable & Attendance", text: "Class timetables with daily attendance for students, plus biometric device punches." },
@@ -111,12 +101,6 @@ $("school-roles").innerHTML = tagList(schoolRoles);
 
 const marqueeItems = [...new Set([...tech, ...schoolTech])];
 $("marquee").innerHTML = [...marqueeItems, ...marqueeItems].map((t) => `<span>${esc(t)}</span>`).join("");
-
-$("roadmap-list").innerHTML = roadmap.map((r) => `
-  <div class="milestone reveal ${r.status === "Delivered" ? "done" : ""}">
-    <span class="phase">${esc(r.phase)}</span>
-    <div><h3>${esc(r.title)} <small>${esc(r.status)}</small></h3><p>${esc(r.text)}</p></div>
-  </div>`).join("");
 
 $("team-grid").innerHTML = team.map((m) => `
   <article class="card person reveal">
