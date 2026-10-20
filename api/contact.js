@@ -52,19 +52,32 @@ module.exports = async (req, res) => {
     return res.status(500).json({ error: "Contact form is not configured yet." });
   }
 
-  const r = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: process.env.CONTACT_FROM || "404FoundersLab Website <onboarding@resend.dev>",
-      to,
-      reply_to: email,
-      subject: `404FoundersLab website enquiry from ${name.replace(/[\r\n]/g, " ")}`,
-      html: `<p><strong>Name:</strong> ${escapeHtml(name)}</p><p><strong>Email:</strong> ${escapeHtml(email)}</p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
-    }),
-  });
-  if (!r.ok) {
-    console.error("Resend error", r.status, await r.text());
+  const payload = {
+    from: process.env.CONTACT_FROM || "404FoundersLab Website <onboarding@resend.dev>",
+    reply_to: email,
+    subject: `404FoundersLab website enquiry from ${name.replace(/[\r\n]/g, " ")}`,
+    html: `<p><strong>Name:</strong> ${escapeHtml(name)}</p><p><strong>Email:</strong> ${escapeHtml(email)}</p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
+  };
+
+  // Send to each recipient separately so one rejected address (e.g. Resend sandbox limits) doesn't block the others.
+  const results = await Promise.all(
+    to.map(async (recipient) => {
+      try {
+        const r = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ ...payload, to: [recipient] }),
+        });
+        if (!r.ok) console.error("Resend error", r.status, await r.text());
+        return r.ok;
+      } catch (err) {
+        console.error("Resend request failed", err);
+        return false;
+      }
+    })
+  );
+
+  if (!results.some(Boolean)) {
     return res.status(502).json({ error: "Could not send your message. Please try again later." });
   }
   return res.status(200).json({ ok: true });
