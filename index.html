@@ -3,62 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404FoundersLab | Assetly: IT Asset, HR &amp; Finance Platform</title>
-  <meta name="description" content="404FoundersLab builds Assetly, a multi-tenant SaaS platform for IT asset management, HR and finance for IT companies.">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <title>404FoundersLab | Software products: Assetly &amp; SchoolStack</title>
+  <meta name="description" content="404FoundersLab builds Assetly (IT asset, HR and finance management) and SchoolStack (multi-tenant school management).">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#0b1020">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
-  <header class="header">
-    <a href="#home" class="logo">404<span>FoundersLab</span></a>
-    <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+  <!-- Shared logo symbol -->
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#6366f1"/>
+        <stop offset="0.55" stop-color="#9333ea"/>
+        <stop offset="1" stop-color="#ec4899"/>
+      </linearGradient>
+      <symbol id="logo-mark" viewBox="0 0 48 48">
+        <rect width="48" height="48" rx="12" fill="url(#lg)"/>
+        <path d="M19 9h10M21 9v10.5L12.5 35.5A3.5 3.5 0 0 0 15.6 41h16.8a3.5 3.5 0 0 0 3.1-5.5L27 19.5V9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16.4 31h15.2l3 5.3a1.6 1.6 0 0 1-1.4 2.4H14.8a1.6 1.6 0 0 1-1.4-2.4z" fill="#fff" opacity=".92"/>
+        <circle cx="24" cy="26" r="2" fill="#fff" opacity=".85"/>
+        <circle cx="28.2" cy="22" r="1.3" fill="#fff" opacity=".7"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="header" id="top">
+    <a href="#home" class="brand" aria-label="404FoundersLab home">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><use href="#logo-mark"/></svg>
+      <span class="brand-text"><b>404</b><span>Founders</span>Lab</span>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
     <nav id="nav">
       <div class="dropdown">
         <button type="button" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Products &#9662;</button>
         <div class="dropdown-menu">
-          <a href="#assetly">Assetly</a>
-          <a href="#schoolstack">SchoolStack</a>
+          <a href="#assetly"><strong>Assetly</strong><small>IT asset, HR &amp; finance</small></a>
+          <a href="#schoolstack"><strong>SchoolStack</strong><small>School management</small></a>
         </div>
       </div>
-      <a href="#features">Features</a>
-      <a href="#security">Security</a>
-      <a href="#tech">Technology</a>
-      <a href="#roadmap">Roadmap</a>
+      <a href="#why">Why us</a>
+      <a href="#process">Process</a>
       <a href="#team">Team</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
   </header>
 
   <main>
+    <!-- HERO -->
     <section id="home" class="hero">
-      <p class="eyebrow">404FoundersLab presents</p>
-      <h1>One platform to manage your IT assets, people and costs.</h1>
-      <p class="hero-sub">Assetly gives IT companies complete visibility into every device, who holds it, what it cost and when its warranty ends, in a secure, multi-tenant cloud platform.</p>
-      <div class="hero-actions">
-        <a href="#features" class="btn btn-light">See what Assetly does</a>
-        <a href="#contact" class="btn btn-outline">Request a demo</a>
-      </div>
-      <div class="stats">
-        <div><strong>3</strong><span>Integrated modules</span></div>
-        <div><strong>5</strong><span>Role-based access levels</span></div>
-        <div><strong>100%</strong><span>Tenant data isolation</span></div>
-        <div><strong>7</strong><span>Phase product roadmap</span></div>
+      <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="pill">&#10024; Product studio &middot; 404FoundersLab</span>
+          <h1>We build software that <span class="grad">runs your organisation.</span></h1>
+          <p class="hero-sub">Two founders, two products. <strong>Assetly</strong> manages IT assets, people and costs. <strong>SchoolStack</strong> runs admissions, academics, fees and transport for schools.</p>
+          <div class="hero-actions">
+            <a href="#products" class="btn btn-light">Explore our products</a>
+            <a href="#contact" class="btn btn-outline">Request a demo</a>
+          </div>
+          <div class="stats">
+            <div><strong data-count="2">0</strong><span>Products</span></div>
+            <div><strong data-count="2">0</strong><span>Founders</span></div>
+            <div><strong data-count="12">0</strong><span>User roles in SchoolStack</span></div>
+            <div><strong data-count="7">0</strong><span>Phase Assetly roadmap</span></div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="mock">
+            <div class="mock-bar"><i></i><i></i><i></i><span>Illustrative preview</span></div>
+            <div class="mock-body">
+              <div class="mock-side"><b></b><b></b><b></b><b></b><b></b></div>
+              <div class="mock-main">
+                <div class="tiles">
+                  <div class="tile t1"><small>Assets</small><strong>1,284</strong></div>
+                  <div class="tile t2"><small>Assigned</small><strong>972</strong></div>
+                  <div class="tile t3"><small>Warranty alerts</small><strong>18</strong></div>
+                </div>
+                <div class="chart">
+                  <u class="h1"></u><u class="h2"></u><u class="h3"></u><u class="h4"></u><u class="h5"></u><u class="h6"></u><u class="h7"></u>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="float f1">&#128737;&#65039; Warranty tracked</div>
+          <div class="float f2">&#127891; Role-based access</div>
+          <div class="float f3">&#128241; QR lookup</div>
+        </div>
       </div>
     </section>
 
-    <section id="assetly" class="section">
-      <h2>What is Assetly?</h2>
+    <!-- TECH MARQUEE -->
+    <div class="marquee" aria-label="Technologies we use">
+      <div class="marquee-track" id="marquee"></div>
+    </div>
+
+    <!-- PRODUCTS OVERVIEW -->
+    <section id="products" class="section">
+      <p class="eyebrow">Our products</p>
+      <h2>Two platforms. One team.</h2>
+      <p class="lead">We design, build, deploy and operate our products end to end, so what we ship is secure, reliable and easy to use.</p>
+      <div class="product-grid">
+        <article class="product reveal">
+          <div class="product-head p-assetly">
+            <span class="product-icon">&#128421;&#65039;</span>
+            <h3>Assetly</h3>
+            <p>IT asset management + HR + finance</p>
+          </div>
+          <div class="product-body">
+            <ul class="ticks">
+              <li>Full asset lifecycle with QR codes</li>
+              <li>Employee assignment and return history</li>
+              <li>Warranty tracking and depreciation</li>
+              <li>Multi-tenant, role-based, audited</li>
+            </ul>
+            <a href="#assetly" class="btn">See Assetly</a>
+          </div>
+        </article>
+        <article class="product reveal">
+          <div class="product-head p-school">
+            <span class="product-icon">&#127979;</span>
+            <h3>SchoolStack</h3>
+            <p>Multi-tenant school management</p>
+          </div>
+          <div class="product-body">
+            <ul class="ticks">
+              <li>Admissions, students, staff and classes</li>
+              <li>Timetable, attendance, exams and fees</li>
+              <li>Transport with live bus view</li>
+              <li>12 roles with custom school branding</li>
+            </ul>
+            <a href="#schoolstack" class="btn">See SchoolStack</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section id="why" class="section alt">
+      <p class="eyebrow">Why 404FoundersLab</p>
+      <h2>Built the way production software should be</h2>
+      <div class="grid four" id="why-grid"></div>
+    </section>
+
+    <!-- ASSETLY -->
+    <section id="assetly" class="section band-assetly">
+      <p class="eyebrow">Product 01</p>
+      <h2>Assetly</h2>
       <p class="lead">IT teams often track laptops in spreadsheets, employees in an HR tool and costs in finance software, so nothing lines up. Assetly brings asset management, HR and finance into one platform built for IT companies.</p>
       <div class="grid three" id="modules-grid"></div>
     </section>
 
     <section id="features" class="section alt">
-      <h2>What we have built</h2>
-      <p class="lead">Phase 1 (MVP) of Assetly is designed and delivered with these capabilities.</p>
+      <h2>What Assetly delivers today</h2>
+      <p class="lead">Phase 1 (MVP) capabilities, designed and built.</p>
       <div class="grid three" id="feature-grid"></div>
     </section>
 
     <section id="workflow" class="section">
-      <h2>How it works</h2>
+      <h2>How Assetly works</h2>
       <ol class="steps" id="steps"></ol>
     </section>
 
@@ -66,42 +171,74 @@
       <h2>Security &amp; multi-tenancy</h2>
       <p class="lead">Built so each client's data stays private and every action is accountable.</p>
       <div class="grid three" id="security-grid"></div>
-    </section>
-
-    <section id="tech" class="section">
-      <h2>Technology</h2>
-      <p class="lead">A modern, scalable stack designed to grow from a handful of tenants to thousands.</p>
+      <h3 class="subhead">Technology behind Assetly</h3>
       <div class="tech" id="tech-list"></div>
     </section>
 
-    <section id="roadmap" class="section alt">
-      <h2>Product roadmap</h2>
-      <p class="lead">Assetly starts with asset management and grows into a complete IT operations platform.</p>
+    <section id="roadmap" class="section">
+      <h2>Assetly roadmap</h2>
+      <p class="lead">It starts with asset management and grows into a complete IT operations platform.</p>
       <div class="timeline" id="roadmap-list"></div>
     </section>
 
-    <section id="schoolstack" class="section">
-      <p class="eyebrow dark">Another product from 404FoundersLab</p>
+    <!-- SCHOOLSTACK -->
+    <section id="schoolstack" class="section band-school">
+      <p class="eyebrow">Product 02</p>
       <h2>SchoolStack</h2>
       <p class="lead">A multi-tenant school management platform that runs admissions, academics, fees, transport and communication for a single school or an entire group of schools.</p>
       <div class="grid three" id="school-modules"></div>
-      <h3 class="subhead">Built for every role</h3>
+    </section>
+
+    <section id="school-more" class="section alt">
+      <h2>Built for every role</h2>
       <div class="tech" id="school-roles"></div>
       <h3 class="subhead">Highlights</h3>
-      <div class="grid three" id="school-highlights"></div>
-      <h3 class="subhead">Technology</h3>
+      <div class="grid four" id="school-highlights"></div>
+      <h3 class="subhead">Technology behind SchoolStack</h3>
       <div class="tech" id="school-tech"></div>
     </section>
 
-    <section id="team" class="section">
+    <!-- PROCESS -->
+    <section id="process" class="section">
+      <p class="eyebrow">How we work</p>
+      <h2>From idea to production</h2>
+      <ol class="steps" id="process-steps"></ol>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="section alt">
+      <p class="eyebrow">The founders</p>
       <h2>Meet 404FoundersLab</h2>
       <p class="lead">A two-person founding team building Assetly and SchoolStack, covering infrastructure and user experience.</p>
       <div class="grid two" id="team-grid"></div>
     </section>
 
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions we often hear</h2>
+      <div class="faq">
+        <details class="reveal"><summary>What does 404FoundersLab do?</summary><p>We are a product studio. We build, deploy and operate our own software platforms, currently Assetly and SchoolStack.</p></details>
+        <details class="reveal"><summary>Can each client's data be kept separate?</summary><p>Yes. Both platforms are multi-tenant. Assetly isolates tenants with row-level security and can use a dedicated database per client. SchoolStack separates enterprises and schools.</p></details>
+        <details class="reveal"><summary>Who is Assetly for?</summary><p>IT companies that need one place for devices, the people who hold them and the costs behind them.</p></details>
+        <details class="reveal"><summary>Who is SchoolStack for?</summary><p>Single schools and school groups that want admissions, academics, fees, transport and notices in one system.</p></details>
+        <details class="reveal"><summary>How do I get a demo?</summary><p>Use the contact form below and tell us what you need. We will reply by email.</p></details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="cta-inner">
+        <h2>Ready to see it in action?</h2>
+        <p>Tell us about your organisation and we will walk you through the right product.</p>
+        <a href="#contact" class="btn btn-light">Request a demo</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
     <section id="contact" class="section alt">
       <h2>Let's talk</h2>
-      <p class="lead">Want a walkthrough of Assetly for your organisation? Send us a message and we will reply by email.</p>
+      <p class="lead">Want a walkthrough of Assetly or SchoolStack for your organisation? Send us a message and we will reply by email.</p>
       <form id="contact-form" class="form">
         <input type="text" name="website" class="hp" hidden tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="text" name="name" placeholder="Your name" required>
@@ -113,8 +250,24 @@
     </section>
   </main>
 
-  <footer class="footer">&copy; <span id="year"></span> 404FoundersLab. Assetly and SchoolStack are products of 404FoundersLab.</footer>
-  <script src="script.js?v=5"></script>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><use href="#logo-mark"/></svg>
+        <span class="brand-text"><b>404</b><span>Founders</span>Lab</span>
+      </div>
+      <div class="footer-links">
+        <a href="#assetly">Assetly</a>
+        <a href="#schoolstack">SchoolStack</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <p>&copy; <span id="year"></span> 404FoundersLab. Assetly and SchoolStack are products of 404FoundersLab.</p>
+  </footer>
+
+  <a href="#top" class="to-top" aria-label="Back to top">&#8593;</a>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
 

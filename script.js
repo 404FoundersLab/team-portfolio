@@ -1,3 +1,5 @@
+document.documentElement.classList.add("js");
+
 const modules = [
   { icon: "🖥️", title: "Asset Management", text: "Register, track and retire every laptop, server, mobile and network device across its full lifecycle, with QR codes for instant lookup." },
   { icon: "👥", title: "HR & People", text: "Manage employees and department hierarchies, and assign or return equipment during onboarding and offboarding with a full history." },
@@ -44,59 +46,149 @@ const roadmap = [
   { phase: "Phase 7", title: "AI IT Assistant", text: "AI-powered help for IT operations.", status: "Planned" },
 ];
 
+const schoolModules = [
+  { icon: "🎓", title: "Admissions & Students", text: "Handle applications and admission numbers, student records, enrolment and class sections." },
+  { icon: "🗓️", title: "Timetable & Attendance", text: "Class timetables with daily attendance for students, plus biometric device punches." },
+  { icon: "📝", title: "Exams, Syllabus & Revisions", text: "Exam schedules and marks, syllabus unit tracking, revision sessions and correction requests." },
+  { icon: "💳", title: "Fee Management", text: "Fee structures and invoices, with role-based access for accounts staff, parents and students." },
+  { icon: "🚌", title: "Transport & Live Bus", text: "Vehicles, routes and trips, with a live bus view for parents, students and drivers." },
+  { icon: "📣", title: "Events, Sports & Notices", text: "School events, sports and cultural programmes, and notifications to the right audience." },
+  { icon: "👩‍🏫", title: "Staff & Leave", text: "Staff records and availability, with leave requests for teachers and school staff." },
+  { icon: "🏫", title: "Classes", text: "Class and section tree to organise students and teachers across the campus." },
+  { icon: "🤖", title: "Built-in assistant", text: "An in-app assistant that helps users find their way around the platform." },
+];
+
+const schoolRoles = ["Platform Admin", "Enterprise Admin", "School Admin", "Admission Staff", "Accounts Staff", "Class Teacher", "Teacher", "Exam Controller", "Transport Staff", "Driver", "Student", "Parent"];
+
+const schoolHighlights = [
+  { icon: "🏢", title: "Schools and school groups", text: "Platform admins manage enterprises, and enterprise admins manage their own schools, each with its own data." },
+  { icon: "🔑", title: "Role-based access", text: "Every module is controlled by role, enforced on the API and covered by automated RBAC checks." },
+  { icon: "🎨", title: "Custom branding", text: "Each school or group can publish its own theme colours, with light, dark and system modes for every user." },
+  { icon: "👥", title: "User provisioning", text: "School admins create staff, student and parent accounts with the right role from within the app." },
+];
+
+const schoolTech = ["Next.js 15", "React 19", "NestJS 11", "TypeScript", "Prisma", "Supabase Postgres", "Docker", "Railway", "Vercel"];
+
+const why = [
+  { icon: "🛡️", title: "Secure by design", text: "Role-based access, tenant isolation, audit trails and hardened headers are built in from day one." },
+  { icon: "⚙️", title: "DevOps-first delivery", text: "Containers, CI/CD and infrastructure as code keep releases fast, repeatable and reliable." },
+  { icon: "🧩", title: "Multi-tenant by default", text: "One platform safely serves many clients, schools or organisations without mixing their data." },
+  { icon: "✨", title: "Clean, fast interfaces", text: "Modern React and Next.js front ends designed for speed and everyday usability." },
+];
+
+const process = [
+  { title: "Discover", text: "We learn how your organisation works and what is slowing it down." },
+  { title: "Design", text: "We shape the workflows, roles and screens before writing a line of code." },
+  { title: "Build", text: "We ship in small, tested increments with security and access control included." },
+  { title: "Deploy & operate", text: "We run the platform with automated pipelines, monitoring and continuous improvement." },
+];
+
 const team = [
-  { name: "Pramodkumar S V", role: "DevOps Engineer · Co-founder", bio: "A former network administrator turned DevOps engineer. Owns infrastructure, CI/CD, security and reliability for Assetly.", links: { LinkedIn: "https://www.linkedin.com/in/pramodkumar-s-vagannanavar" } },
-  { name: "Pavankumar", role: "Frontend Developer · Co-founder", bio: "Builds the Assetly user interface with a focus on speed, usability and clean design.", links: { LinkedIn: "https://www.linkedin.com/in/pavan-kumar-vel" } },
+  { name: "Pramodkumar S V", role: "DevOps Engineer · Co-founder", bio: "A former network administrator turned DevOps engineer. Owns infrastructure, CI/CD, security and reliability across our products.", links: { LinkedIn: "https://www.linkedin.com/in/pramodkumar-s-vagannanavar" } },
+  { name: "Pavankumar", role: "Frontend Developer · Co-founder", bio: "Builds the user interfaces of Assetly and SchoolStack with a focus on speed, usability and clean design.", links: { LinkedIn: "https://www.linkedin.com/in/pavan-kumar-vel" } },
 ];
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const $ = (id) => document.getElementById(id);
 
-const iconCard = (i) => `<article class="card"><div class="icon">${i.icon}</div><h3>${esc(i.title)}</h3><p>${esc(i.text)}</p></article>`;
+const iconCard = (i) => `<article class="card reveal"><div class="icon">${i.icon}</div><h3>${esc(i.title)}</h3><p>${esc(i.text)}</p></article>`;
+const stepItem = (s) => `<li class="reveal"><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></li>`;
+const tagList = (list) => list.map((t) => `<span class="tag reveal">${esc(t)}</span>`).join("");
 
 $("modules-grid").innerHTML = modules.map(iconCard).join("");
 $("feature-grid").innerHTML = features.map(iconCard).join("");
 $("security-grid").innerHTML = security.map(iconCard).join("");
-
+$("why-grid").innerHTML = why.map(iconCard).join("");
 $("school-modules").innerHTML = schoolModules.map(iconCard).join("");
 $("school-highlights").innerHTML = schoolHighlights.map(iconCard).join("");
-$("school-roles").innerHTML = schoolRoles.map((t) => `<span class="tag">${esc(t)}</span>`).join("");
-$("school-tech").innerHTML = schoolTech.map((t) => `<span class="tag">${esc(t)}</span>`).join("");
 
-$("steps").innerHTML = steps.map((s) => `<li><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></li>`).join("");
+$("steps").innerHTML = steps.map(stepItem).join("");
+$("process-steps").innerHTML = process.map(stepItem).join("");
 
-$("tech-list").innerHTML = tech.map((t) => `<span class="tag">${esc(t)}</span>`).join("");
+$("tech-list").innerHTML = tagList(tech);
+$("school-tech").innerHTML = tagList(schoolTech);
+$("school-roles").innerHTML = tagList(schoolRoles);
+
+const marqueeItems = [...new Set([...tech, ...schoolTech])];
+$("marquee").innerHTML = [...marqueeItems, ...marqueeItems].map((t) => `<span>${esc(t)}</span>`).join("");
 
 $("roadmap-list").innerHTML = roadmap.map((r) => `
-  <div class="milestone ${r.status === "Delivered" ? "done" : ""}">
+  <div class="milestone reveal ${r.status === "Delivered" ? "done" : ""}">
     <span class="phase">${esc(r.phase)}</span>
     <div><h3>${esc(r.title)} <small>${esc(r.status)}</small></h3><p>${esc(r.text)}</p></div>
   </div>`).join("");
 
 $("team-grid").innerHTML = team.map((m) => `
-  <article class="card person">
+  <article class="card person reveal">
     <div class="avatar">${esc(m.name.split(" ").map((p) => p[0]).join("").slice(0, 2))}</div>
     <h3>${esc(m.name)}</h3>
     <p class="role">${esc(m.role)}</p>
     <p>${esc(m.bio)}</p>
-    <div class="links">${Object.entries(m.links).map(([k, v]) => `<a href="${esc(v)}">${esc(k)}</a>`).join("")}</div>
+    <div class="links">${Object.entries(m.links).map(([k, v]) => `<a href="${esc(v)}" target="_blank" rel="noopener noreferrer">${esc(k)}</a>`).join("")}</div>
   </article>`).join("");
 
+/* ---------- Navigation ---------- */
 const nav = $("nav");
-document.querySelector(".menu-toggle").addEventListener("click", () => nav.classList.toggle("open"));
+const menuToggle = document.querySelector(".menu-toggle");
+menuToggle.addEventListener("click", () => {
+  const open = nav.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(open));
+});
+
 const dropdown = document.querySelector(".dropdown");
 const dropdownToggle = dropdown.querySelector(".dropdown-toggle");
 const setDropdown = (open) => {
   dropdown.classList.toggle("open", open);
   dropdownToggle.setAttribute("aria-expanded", String(open));
 };
-dropdownToggle.addEventListener("click", () => setDropdown(!dropdown.classList.contains("open")));
+dropdownToggle.addEventListener("click", (e) => {
+  e.stopPropagation();
+  setDropdown(!dropdown.classList.contains("open"));
+});
 document.addEventListener("click", (e) => { if (!dropdown.contains(e.target)) setDropdown(false); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") setDropdown(false); });
 nav.addEventListener("click", (e) => {
-  if (e.target.closest("a")) { nav.classList.remove("open"); setDropdown(false); }
+  if (e.target.closest("a")) {
+    nav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    setDropdown(false);
+  }
 });
 
+const toTop = document.querySelector(".to-top");
+window.addEventListener("scroll", () => toTop.classList.toggle("show", window.scrollY > 600), { passive: true });
+
+/* ---------- Reveal on scroll + counters ---------- */
+const countUp = (el) => {
+  const target = Number(el.dataset.count);
+  const start = performance.now();
+  const tick = (now) => {
+    const p = Math.min((now - start) / 1200, 1);
+    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+    if (p < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+};
+
+const counters = document.querySelectorAll("[data-count]");
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  const co = new IntersectionObserver((entries) => {
+    entries.forEach((en) => { if (en.isIntersecting) { countUp(en.target); co.unobserve(en.target); } });
+  }, { threshold: 0.6 });
+  counters.forEach((el) => co.observe(el));
+} else {
+  document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+  counters.forEach((el) => { el.textContent = el.dataset.count; });
+}
+
+/* ---------- Contact form ---------- */
 const EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
 const COMMON_DOMAINS = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "icloud.com", "live.com", "protonmail.com"];
 
@@ -122,7 +214,6 @@ async function checkEmail(email) {
     clearTimeout(timer);
     const dns = await res.json();
     if (dns.Status === 3 || (dns.Status === 0 && !dns.Answer)) {
-      // No MX record: fall back to an A record (valid per mail standards).
       const a = await (await fetch(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=A`)).json();
       if (!a.Answer) return `The domain "${domain}" cannot receive email. Please check your address.`;
     }
