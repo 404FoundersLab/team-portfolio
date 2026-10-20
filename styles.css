@@ -89,3 +89,4 @@ nav a.nav-cta:hover { color: #fff; background: var(--primary-dark); }
   .milestone { flex-direction: column; gap: .25rem; }
 }
 
+.status-link { text-decoration: underline; }

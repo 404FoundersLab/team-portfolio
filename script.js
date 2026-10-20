@@ -74,7 +74,7 @@ $("team-grid").innerHTML = team.map((m) => `
     <h3>${esc(m.name)}</h3>
     <p class="role">${esc(m.role)}</p>
     <p>${esc(m.bio)}</p>
-    <div class="links">${Object.entries(m.links).map(([k, v]) => `<a href="${esc(v)}">${esc(k)}</a>`).join("")}</div>
+    <div class="links">${Object.entries(m.links).map(([k, v]) => `<a href="${esc(v)}" rel="noopener noreferrer">${esc(k)}</a>`).join("")}</div>
   </article>`).join("");
 
 const nav = $("nav");
@@ -163,7 +163,7 @@ $("contact-form").addEventListener("submit", async (e) => {
     const body = encodeURIComponent(`${data.message}\n\nName: ${data.name}\nEmail: ${data.email}`);
     const href = `mailto:${CONTACT_TO}?cc=${CONTACT_CC}&subject=${subject}&body=${body}`;
     status.style.color = "#dc2626";
-    status.innerHTML = `Could not send automatically. <a href="${href}" style="text-decoration:underline">Click here to send via your email app</a>.`;
+    status.innerHTML = `Could not send automatically. <a href="${href}" class="status-link">Click here to send via your email app</a>.`;
     window.location.href = href;
   } finally {
     btn.disabled = false;
