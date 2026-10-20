@@ -221,3 +221,22 @@ nav a.nav-cta:hover { color: #fff; transform: translateY(-1px); }
   .js .reveal { opacity: 1; transform: none; }
 }
 
+/* hero showcase (Assetly / SchoolStack rotation) */
+.showcase-tabs { display: flex; justify-content: center; gap: .5rem; margin-bottom: 1.4rem; }
+.showcase-tab { padding: .45rem 1.2rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #fff; font: inherit; font-weight: 600; font-size: .9rem; cursor: pointer; transition: all .25s; }
+.showcase-tab:hover { background: rgba(255,255,255,.18); }
+.showcase-tab.active { background: #fff; color: var(--primary); border-color: #fff; }
+.slides { display: grid; }
+.slide { grid-area: 1 / 1; position: relative; opacity: 0; visibility: hidden; transform: translateX(30px) scale(.97); transition: opacity .7s ease, transform .7s ease, visibility .7s; }
+.slide.active { opacity: 1; visibility: visible; transform: none; }
+.showcase-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.6rem; }
+.showcase-dots i { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.35); transition: all .3s; }
+.showcase-dots i.active { width: 26px; background: #fff; }
+.mock.school .mock-side { background: #fdf2f8; }
+.mock.school .mock-side b { background: #fbcfe8; }
+.mock.school .mock-side b:first-child { background: #db2777; }
+.t4 { background: linear-gradient(135deg, #db2777, #f43f5e); }
+.t5 { background: linear-gradient(135deg, #f97316, #f59e0b); }
+.t6 { background: linear-gradient(135deg, #8b5cf6, #db2777); }
+.mock.school .chart u { background: linear-gradient(180deg, #f97316, #db2777); }
+.slide:not(.active) .chart u { animation: none; }

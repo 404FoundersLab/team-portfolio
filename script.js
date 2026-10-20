@@ -142,6 +142,28 @@ nav.addEventListener("click", (e) => {
 const toTop = document.querySelector(".to-top");
 window.addEventListener("scroll", () => toTop.classList.toggle("show", window.scrollY > 600), { passive: true });
 
+/* ---------- Hero showcase: rotate Assetly / SchoolStack ---------- */
+(() => {
+  const slides = [...document.querySelectorAll(".slide")];
+  const tabs = [...document.querySelectorAll(".showcase-tab")];
+  const dots = [...document.querySelectorAll(".showcase-dots i")];
+  const visual = document.querySelector(".hero-visual");
+  if (!slides.length) return;
+  let current = 0;
+  let timer;
+  const show = (n) => {
+    current = (n + slides.length) % slides.length;
+    slides.forEach((s, i) => { s.classList.toggle("active", i === current); s.setAttribute("aria-hidden", String(i !== current)); });
+    tabs.forEach((t, i) => { t.classList.toggle("active", i === current); t.setAttribute("aria-selected", String(i === current)); });
+    dots.forEach((d, i) => d.classList.toggle("active", i === current));
+  };
+  const start = () => { stop(); timer = setInterval(() => show(current + 1), 5000); };
+  const stop = () => clearInterval(timer);
+  tabs.forEach((t, i) => t.addEventListener("click", () => { show(i); start(); }));
+  visual.addEventListener("mouseenter", stop);
+  visual.addEventListener("mouseleave", start);
+  start();
+})();
 /* ---------- Reveal on scroll + counters ---------- */
 const countUp = (el) => {
   const target = Number(el.dataset.count);

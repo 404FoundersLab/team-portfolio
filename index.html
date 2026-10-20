@@ -8,7 +8,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#0b1020">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
   <!-- Shared logo symbol -->
@@ -71,30 +71,59 @@
             <div><strong data-count="3">0</strong><span>Modules in Assetly</span></div>
           </div>
         </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="mock">
-            <div class="mock-bar"><i></i><i></i><i></i><span>Illustrative preview</span></div>
-            <div class="mock-body">
-              <div class="mock-side"><b></b><b></b><b></b><b></b><b></b></div>
-              <div class="mock-main">
-                <div class="tiles">
-                  <div class="tile t1"><small>Assets</small><strong>1,284</strong></div>
-                  <div class="tile t2"><small>Assigned</small><strong>972</strong></div>
-                  <div class="tile t3"><small>Warranty alerts</small><strong>18</strong></div>
-                </div>
-                <div class="chart">
-                  <u class="h1"></u><u class="h2"></u><u class="h3"></u><u class="h4"></u><u class="h5"></u><u class="h6"></u><u class="h7"></u>
+        <div class="hero-visual">
+          <div class="showcase-tabs" role="tablist" aria-label="Product previews">
+            <button type="button" class="showcase-tab active" role="tab" aria-selected="true" data-slide="0">Assetly</button>
+            <button type="button" class="showcase-tab" role="tab" aria-selected="false" data-slide="1">SchoolStack</button>
+          </div>
+          <div class="slides">
+            <div class="slide active" data-slide="0" aria-hidden="false">
+              <div class="mock">
+                <div class="mock-bar"><i></i><i></i><i></i><span>Assetly &middot; Illustrative preview</span></div>
+                <div class="mock-body">
+                  <div class="mock-side"><b></b><b></b><b></b><b></b><b></b></div>
+                  <div class="mock-main">
+                    <div class="tiles">
+                      <div class="tile t1"><small>Assets</small><strong>1,284</strong></div>
+                      <div class="tile t2"><small>Assigned</small><strong>972</strong></div>
+                      <div class="tile t3"><small>Warranty alerts</small><strong>18</strong></div>
+                    </div>
+                    <div class="chart">
+                      <u class="h1"></u><u class="h2"></u><u class="h3"></u><u class="h4"></u><u class="h5"></u><u class="h6"></u><u class="h7"></u>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div class="float f1">&#128737;&#65039; Warranty tracked</div>
+              <div class="float f2">&#128273; Role-based access</div>
+              <div class="float f3">&#128241; QR lookup</div>
+            </div>
+            <div class="slide" data-slide="1" aria-hidden="true">
+              <div class="mock school">
+                <div class="mock-bar"><i></i><i></i><i></i><span>SchoolStack &middot; Illustrative preview</span></div>
+                <div class="mock-body">
+                  <div class="mock-side"><b></b><b></b><b></b><b></b><b></b></div>
+                  <div class="mock-main">
+                    <div class="tiles">
+                      <div class="tile t4"><small>Students</small><strong>1,240</strong></div>
+                      <div class="tile t5"><small>Attendance</small><strong>96%</strong></div>
+                      <div class="tile t6"><small>Fees due</small><strong>42</strong></div>
+                    </div>
+                    <div class="chart">
+                      <u class="h6"></u><u class="h5"></u><u class="h7"></u><u class="h4"></u><u class="h6"></u><u class="h3"></u><u class="h5"></u>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="float f1">&#127891; 12 user roles</div>
+              <div class="float f2">&#128652; Live bus view</div>
+              <div class="float f3">&#128179; Fee management</div>
             </div>
           </div>
-          <div class="float f1">&#128737;&#65039; Warranty tracked</div>
-          <div class="float f2">&#127891; Role-based access</div>
-          <div class="float f3">&#128241; QR lookup</div>
+          <div class="showcase-dots" aria-hidden="true"><i class="active"></i><i></i></div>
         </div>
       </div>
     </section>
-
     <!-- TECH MARQUEE -->
     <div class="marquee" aria-label="Technologies we use">
       <div class="marquee-track" id="marquee"></div>
@@ -261,7 +290,7 @@
   </footer>
 
   <a href="#top" class="to-top" aria-label="Back to top">&#8593;</a>
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=8"></script>
 </body>
 </html>
 
