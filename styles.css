@@ -92,3 +92,14 @@ nav a.nav-cta:hover { color: #fff; background: var(--primary-dark); }
 .hp { position: absolute; left: -9999px; height: 0; width: 0; opacity: 0; }
 .eyebrow.dark { color: var(--primary); text-align: center; opacity: 1; font-weight: 600; }
 .subhead { text-align: center; margin: 2.5rem 0 1rem; font-size: 1.25rem; }
+.dropdown { position: relative; display: inline-block; margin-left: 1.25rem; }
+.dropdown-toggle { background: none; border: 0; font: inherit; font-weight: 500; font-size: .95rem; color: inherit; cursor: pointer; }
+.dropdown-toggle:hover, .dropdown.open .dropdown-toggle { color: var(--primary); }
+.dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 170px; padding: .4rem 0; background: #fff; border-radius: 10px; box-shadow: 0 8px 24px rgba(15,23,42,.15); }
+.dropdown.open .dropdown-menu { display: block; }
+.dropdown-menu a { display: block; margin: 0; padding: .55rem 1.1rem; }
+.dropdown-menu a:hover { background: var(--bg-alt); }
+@media (max-width: 800px) {
+  .dropdown { margin: .5rem 0; display: block; }
+  .dropdown-menu { position: static; box-shadow: none; padding-left: 1rem; }
+}

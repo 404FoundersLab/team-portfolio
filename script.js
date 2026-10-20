@@ -84,7 +84,18 @@ $("team-grid").innerHTML = team.map((m) => `
 
 const nav = $("nav");
 document.querySelector(".menu-toggle").addEventListener("click", () => nav.classList.toggle("open"));
-nav.addEventListener("click", () => nav.classList.remove("open"));
+const dropdown = document.querySelector(".dropdown");
+const dropdownToggle = dropdown.querySelector(".dropdown-toggle");
+const setDropdown = (open) => {
+  dropdown.classList.toggle("open", open);
+  dropdownToggle.setAttribute("aria-expanded", String(open));
+};
+dropdownToggle.addEventListener("click", () => setDropdown(!dropdown.classList.contains("open")));
+document.addEventListener("click", (e) => { if (!dropdown.contains(e.target)) setDropdown(false); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") setDropdown(false); });
+nav.addEventListener("click", (e) => {
+  if (e.target.closest("a")) { nav.classList.remove("open"); setDropdown(false); }
+});
 
 const EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
 const COMMON_DOMAINS = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "icloud.com", "live.com", "protonmail.com"];
